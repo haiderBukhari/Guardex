@@ -1,0 +1,431 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 33% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 174 84% 32%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 174 84% 32%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 222 84% 5%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5% 26%;
+    --sidebar-primary: 240 6% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 5% 96%;
+    --sidebar-accent-foreground: 240 6% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217 92% 60%;
+  }
+
+  .dark {
+    --background: 222 47% 5%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 8%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 5%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 174 84% 32%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 174 84% 32%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 213 27% 84%;
+
+    --sidebar-background: 240 6% 10%;
+    --sidebar-foreground: 240 5% 96%;
+    --sidebar-primary: 224 76% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 4% 16%;
+    --sidebar-accent-foreground: 240 5% 96%;
+    --sidebar-border: 240 4% 16%;
+    --sidebar-ring: 217 92% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-inter;
+  }
+
+  /* Additional animation for inputs */
+  input:focus-visible,
+  textarea:focus-visible {
+    animation: input-glow 0.5s ease-out;
+  }
+}
+
+/* MacBook-style Status Box */
+.macbook-status-box {
+  @apply flex flex-col h-full;
+  background: linear-gradient(to bottom, #2d1b69, #1a103e);
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transform: perspective(1000px) rotateY(-2deg);
+  margin-left: 1rem;
+}
+
+.macbook-header {
+  @apply bg-black/40 border-b border-white/10;
+}
+
+.macbook-content {
+  @apply flex-1 overflow-auto;
+  background: rgba(0, 0, 0, 0.2);
+  min-height: 300px;
+  max-height: 400px;
+}
+
+/* Scan line effect for MacBook terminal */
+.macbook-content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(transparent 0%, rgba(32, 0, 64, 0.1) 50%, transparent 100%);
+  background-size: 100% 8px;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.3;
+  animation: scan-lines 8s linear infinite;
+}
+
+.scanner-line {
+  @apply h-0.5 w-full bg-guardex-400 absolute;
+  box-shadow: 0 0 10px 2px rgb(45 212 191 / 50%);
+}
+
+.glow-text {
+  text-shadow: 0 0 10px rgb(45 212 191 / 50%);
+}
+
+.glow-sm {
+  box-shadow: 0 0 10px 0px rgb(45 212 191 / 30%);
+}
+
+.glow-md {
+  box-shadow: 0 0 15px 0px rgb(45 212 191 / 30%);
+}
+
+.glow-lg {
+  box-shadow: 0 0 25px 5px rgb(45 212 191 / 30%);
+}
+
+.gradient-bg {
+  background: radial-gradient(circle at center, rgba(17, 94, 89, 0.3) 0%, rgba(0, 0, 0, 0) 70%);
+}
+
+.terminal-bg {
+  background-color: rgba(17, 24, 39, 0.8);
+  border: 1px solid rgba(75, 85, 99, 0.5);
+  border-radius: 0.5rem;
+}
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+}
+
+.dark .glass-effect {
+  background: rgba(17, 24, 39, 0.4);
+  border: 1px solid rgba(55, 65, 81, 0.3);
+}
+
+.clip-path-slant {
+  clip-path: polygon(0 0, 100% 0, 100% 94%, 0% 100%);
+}
+
+@media (max-width: 768px) {
+  .clip-path-slant {
+    clip-path: polygon(0 0, 100% 0, 100% 97%, 0% 100%);
+  }
+}
+
+/* Fade‑in for scan log lines */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in forwards;
+}
+
+/* Input glow animation */
+@keyframes input-glow {
+  0% {
+    box-shadow: 0 0 0px 0px rgba(45, 212, 191, 0);
+  }
+  50% {
+    box-shadow: 0 0 15px 2px rgba(45, 212, 191, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 5px 0px rgba(45, 212, 191, 0.2);
+  }
+}
+
+/* Input error shake animation */
+@keyframes input-error {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+.input-error {
+  animation: input-error 0.3s ease-in-out;
+  border-color: rgb(239, 68, 68) !important;
+}
+
+/* Success animation for forms */
+@keyframes success-pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.success-pulse {
+  animation: success-pulse 0.5s ease-in-out;
+}
+
+/* Terminal animation */
+.terminal-animation {
+  position: relative;
+  overflow: hidden;
+}
+
+.terminal-animation::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent 50%, rgba(168, 85, 247, 0.05) 50%);
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.5;
+  animation: scan-lines 2s linear infinite;
+}
+
+@keyframes scan-lines {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 100%;
+  }
+}
+
+/* Sci-Fi Radar Container */
+.sci-fi-radar-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+
+/* Sci-Fi Scan Lines Effect */
+.sci-fi-scan-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(168, 85, 247, 0.03) 0px,
+    rgba(168, 85, 247, 0.03) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0.5;
+}
+
+/* Sci-Fi Radar Ping Animation */
+@keyframes radar-ping {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  70% {
+    transform: scale(3);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.radar-ping {
+  animation: radar-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Sci-Fi Radar Sweep Animation */
+@keyframes radar-sweep {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.radar-sweep {
+  transform-origin: bottom center;
+  animation: radar-sweep 3s linear infinite;
+}
+
+/* Sci-Fi Glow Pulse */
+@keyframes glow-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 5px 0px rgba(168, 85, 247, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 15px 2px rgba(168, 85, 247, 0.6);
+  }
+}
+
+.glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+/* Typewriter effect for terminal text */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.typing-animation {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typing 1s steps(30, end);
+}
+
+/* Blinking cursor animation */
+@keyframes blink-cursor {
+  from,
+  to {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.cursor-blink {
+  animation: blink-cursor 0.75s step-end infinite;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .terminal-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .terminal-scrollbar::-webkit-scrollbar-track {
+    background: rgba(31, 41, 55, 0.5);
+    border-radius: 3px;
+  }
+
+  .terminal-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(139, 92, 246, 0.5);
+    border-radius: 3px;
+  }
+
+  .terminal-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(139, 92, 246, 0.7);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
