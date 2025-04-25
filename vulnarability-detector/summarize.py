@@ -2,7 +2,7 @@ import json
 import re
 from google import generativeai as genai
 
-GEMINI_KEY = "AIzaSyApYySLz4_7zxg34jIT9ruKzdiL974jjFI"
+GEMINI_KEY = ""
 BATCH_SIZE = 20
 
 def summarize_vulnerabilities(report_data):
